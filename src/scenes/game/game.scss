@@ -1,0 +1,310 @@
+@import url("./clown-animations.scss");
+
+:root app-game {
+  .outer-scene {
+    height: 100%;
+    overflow: hidden;
+
+    .inner-scene {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      #background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: -100%;
+        bottom: 0;
+        background-color: white;
+
+        #road {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          right: 0;
+          height: calc(var(--scale) * 115px);
+          transform: translateY(-50%);
+          background-size: calc(var(--scale) * 536px) calc(var(--scale) * 115px);
+          background-image: var(--img-street-road);
+          width: calc(var(--scale) * 1072px);
+
+          // animation-name: scrollLeft;
+          // animation-timing-function: linear;
+          // animation-iteration-count: infinite;
+          // animation-duration: calc(var(--scroll-time) * 2ms);
+        }
+
+        #marking {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          right: 0;
+          height: calc(var(--scale) * 38px);
+          transform: translateY(-50%);
+          background-size: calc(var(--scale) * 268px) calc(var(--scale) * 38px);
+          background-image: var(--img-street-marking);
+          width: calc(var(--scale) * 1072px);
+        }
+      }
+
+      #foreground-items {
+        height: 100%;
+
+        #clowns {
+          position: absolute;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: 9999;
+        }
+
+        #sorted {
+          height: 100%;
+        }
+
+        #explosions {
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+        }
+
+        #masha {
+          position: absolute;
+          transform: translateY(-90%) scale(var(--masha-scale));
+          transform-origin: bottom center;
+          transition: left 1500ms, transform 2s;
+
+          &.invincible {
+            animation: mashaRunningSpriteAnimation .8s
+                steps(var(--img-masha-running-frames-count)) infinite,
+              mashaBlink 0.5s linear alternate infinite;
+          }
+
+          &.winning {
+            transition: left 10s linear;
+          }
+        }
+
+        .good {
+          img {
+            animation: goodBounce 1s alternate infinite;
+          }
+        }
+
+        .big-hit {
+          animation: flyAway 2s linear forwards;
+          transform-origin: center;
+        }
+      }
+
+      #red-health {
+        position: absolute;
+        pointer-events: none;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 99999999;
+        opacity: 0;
+        background: red;
+
+        &.active {
+          animation: health 1s linear alternate infinite;
+        }
+      }
+
+      #messages {
+        position: absolute;
+        pointer-events: none;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 999999;
+
+        .good {
+          display: flex;
+          justify-content: center;
+          padding-top: 300px;
+
+          > div {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            column-gap: 20px;
+            font-family: "hardpixel";
+
+            .pic {
+              animation: goodElement 3s linear 0s 1 forwards;
+              grid-row: 1 / span 3;
+              display: flex;
+              align-items: center;
+              opacity: 0;
+
+              img {
+                width: 100%;
+              }
+            }
+
+            p {
+              margin: 0;
+            }
+
+            .name {
+              animation: goodElement 3s linear 0.5s 1 forwards;
+              grid-column: 2;
+              grid-row: 1;
+              font-size: 60px;
+
+              color: yellow;
+              text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,
+                2px 1px #000, -2px -1px #000, 2px -1px #000, -2px 1px #000;
+              opacity: 0;
+            }
+
+            .desc {
+              animation: goodElement 3s linear 1s 1 forwards;
+              grid-column: 2;
+              grid-row: 2;
+              font-size: 20px;
+              color: white;
+              text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000,
+                1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+              opacity: 0;
+            }
+
+            .pts {
+              animation: goodElement 2s linear 1.5s 1 forwards;
+              grid-column: 2;
+              grid-row: 2;
+              font-size: 70px;
+              color: white;
+              text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000,
+                1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+              opacity: 0;
+              text-align: end;
+              transform: rotate(-30deg);
+            }
+          }
+        }
+
+        .msg {
+          font-family: "hardpixel";
+          font-size: 60px;
+
+          background: rgb(2, 0, 36);
+          background: linear-gradient(
+            90deg,
+            rgba(2, 0, 36, 1) 5%,
+            rgba(220, 228, 14, 1) 35%,
+            rgba(0, 206, 255, 1) 51%,
+            rgba(255, 0, 236, 1) 82%
+          );
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        #msg-1 {
+          animation: msg1 5s linear 1.5s;
+          animation-fill-mode: forwards;
+          position: absolute;
+          right: 300px;
+          bottom: 200px;
+          opacity: 0;
+        }
+
+        #msg-2 {
+          animation: msg1 5s linear 2s;
+          animation-fill-mode: forwards;
+          position: absolute;
+          left: 300px;
+          top: 200px;
+          opacity: 0;
+        }
+
+        #score {
+          position: absolute;
+          top: 40px;
+          right: 40px;
+          font-family: "hardpixel";
+          font-size: 50px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes msg1 {
+  0% {
+    opacity: 0;
+    scale: 3;
+    transform: none;
+  }
+  30% {
+    opacity: 1;
+    scale: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+}
+
+@keyframes health {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes mashaBlink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes goodBounce {
+  0% {
+    transform: none;
+  }
+  100% {
+    transform: translateY(calc(var(--scale) * -5px));
+  }
+}
+
+@keyframes goodElement {
+  0% {
+    opacity: 0;
+    scale: 3;
+  }
+  20% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes flyAway {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(var(--scale) * 300px)) translateY(calc(var(--scale) * -300px));
+    opacity: 0;
+  }
+}

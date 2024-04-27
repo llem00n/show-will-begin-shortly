@@ -1,0 +1,196 @@
+:root birthday-party {
+  .outer-scene {
+    height: 100%;
+    overflow: hidden;
+
+    .inner-scene {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: #111;
+      font-family: 'hardpixel';
+      transition: background-color 5s;
+
+      &.space {
+        background-color: #050a24;
+      }
+
+      .starting-text {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding-left: 60px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        > p {
+          color: white;
+          animation: startingText 10s ease-in-out forwards;
+          opacity: 0;
+          margin: 0 10px;
+          font-size: 50px;
+
+          &:nth-child(1) {
+            animation-delay: 1000ms;
+          }
+
+          &:nth-child(2) {
+            animation-delay: 3000ms;
+          }
+
+          &:nth-child(3) {
+            animation-delay: 5000ms;
+          }
+        }
+      }
+
+      .space {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 3s;
+        margin: 0;
+        animation: space 15s linear infinite alternate;
+
+        &.active {
+          opacity: 1;
+        }
+
+        .bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: -1000%;
+          bottom: 0;
+
+          background-size: var(--img-party-space-bg-width) var(--img-party-space-bg-height);
+
+          background-image: var(--img-party-space-bg);
+          animation: bg 300s linear forwards;
+        }
+
+        .text {
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          display: grid;
+          grid-template-columns: repeat(15, 100vw);
+          opacity: 0;
+          transition: opacity 3s, left 2s;
+
+          &.active {
+            opacity: 1;
+          }
+
+          > div {
+            width: 100vw;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            padding: 50px;
+            column-gap: 14px;
+            box-sizing: border-box;
+            position: relative;
+
+            .sign {
+              position: absolute;
+              bottom: 30px;
+              right: 30px;
+              opacity: .3;
+            }
+
+            .pizza {
+              width: calc(var(--scale) * 14px);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes startingText {
+  0% {
+    opacity: 0;
+    transform: translateY(200%);
+  }
+  30%{
+    opacity: 1;
+    transform: translateY(10px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+}
+
+@keyframes bg {
+  0% {
+    transform: none;
+  }
+  100% {
+    transform: TranslateX(-100%);
+  }
+}
+
+@keyframes text {
+  0% {
+    transform: translateX(50px);
+  }
+
+  100% {
+    transform: translateX(-50px);
+  }
+}
+
+@keyframes space {
+  0% {
+    transform: translate(-5px, 3px);
+  }
+  10% {
+    transform: translate(3px, -2px);
+  }
+  20% {
+    transform: translate(-2px, 5px);
+  }
+  30% {
+    transform: translate(6px, -1px);
+  }
+  40% {
+    transform: translate(-4px, 2px);
+  }
+  50% {
+    transform: translate(2px, -3px);
+  }
+  60% {
+    transform: translate(-3px, 4px);
+  }
+  70% {
+    transform: translate(5px, -2px);
+  }
+  80% {
+    transform: translate(-1px, 3px);
+  }
+  90% {
+    transform: translate(4px, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

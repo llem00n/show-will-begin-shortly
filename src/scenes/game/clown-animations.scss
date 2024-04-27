@@ -1,0 +1,99 @@
+:root app-game {
+  .clown {
+    position: absolute;
+    display: flex;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+
+    &.c-0 {
+      animation-name: clownAnim0;
+    }
+
+    &.c-1 {
+      animation-name: clownAnim1;
+    }
+
+    &.c-2 {
+      animation-name: clownAnim2;
+    }
+
+    &.c-3 {
+      animation-name: clownAnim2;
+    }
+  }
+}
+
+@keyframes clownAnim0 {
+  0% {
+    transform: none;
+  }
+  30% {
+    transform: translate(80%, -100%);
+  }
+  80% {
+    transform: translate(200%, 10%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, 40%);
+    opacity: 0;
+  }
+}
+
+@keyframes clownAnim1 {
+  0% {
+    transform: none;
+  }
+  30% {
+    transform: translate(80%, -100%);
+  }
+  80% {
+    transform: translate(200%, 0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, 40%);
+    opacity: 0;
+  }
+}
+
+@keyframes clownAnim2 {
+  0% {
+    transform: none;
+  }
+  20% {
+    transform: translate(80%, -100%);
+  }
+  40% {
+    transform: translate(100%, 50%);
+  }
+  60% {
+    transform: translate(150%, 0%);
+  }
+  80% {
+    transform: translate(125%, 20%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, 50%);
+    opacity: 0;
+  }
+}
+
+
+@keyframes clownAnim3 {
+  0% {
+    transform: none;
+  }
+  30% {
+    transform: translate(80%, -100%);
+  }
+  80% {
+    transform: translate(200%, 50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, -10%);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,94 @@
+@import url(./res/fonts.scss);
+
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.messages-overlay {
+  pointer-events: none;
+  z-index: 9999;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.dialog-bubble {
+  &.faded {
+    transform: scale(0);
+  }
+
+  font-family: 'pixel';
+  transition: transform var(--dialog-fade-duration);
+  transform-origin: center bottom;
+  position: absolute;
+
+  .text-box {
+    background-color: #eee;
+    box-shadow: -5px 0 0 0 #222, 5px 0 0 0 #222, 0 -5px 0 0 #222,
+      0 5px 0 0 #222;
+    padding: 10px;
+    max-width: 300px;
+
+    .author {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .text {
+      color: #333
+    }
+  }
+}
+
+#scene-overlay {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+@keyframes mashaRunningSpriteAnimation {
+  100% {
+    background-position: calc(var(--scale) * -120px);
+  }
+}
+
+@keyframes explosionSpriteAnimation {
+  100% {
+    background-position: calc(var(--scale) * -264px);
+  }
+}
+
+.masha--running {
+  width: calc(var(--scale) * 30px);
+  height: calc(var(--scale) * 30px);
+  background-image: var(--img-masha-running);
+  animation: mashaRunningSpriteAnimation 1s steps(var(--img-masha-running-frames-count)) infinite;
+  background-size: calc(var(--scale) * 120px) calc(var(--scale) * 30px);
+}
+
+.explosion {
+  width: calc(var(--scale) * 44px);
+  height: calc(var(--scale) * 36px);
+  background-image: var(--img-street-explosion);
+  animation: explosionSpriteAnimation .8s steps(var(--img-street-explosion-frames-count)) forwards;
+  background-size: calc(var(--scale) * 264px) calc(var(--scale) * 36px);
+  position: absolute;
+}

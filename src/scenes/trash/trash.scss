@@ -1,0 +1,42 @@
+:root app-trash {
+  .outer-scene {
+    height: 100%;
+    overflow: hidden;
+    background-color: white;
+
+    .inner-scene {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      font-family: "hardpixel";
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      row-gap: 20px;
+
+      img {
+        width: calc(var(--scale) * 13px);
+      }
+
+      button {
+        padding: 5px 15px;
+        background-color: #d6ffc3;
+        color: #222;
+        font-family: "hardpixel";
+        box-shadow: -5px 0 0 0 #222, 5px 0 0 0 #222, 0 -5px 0 0 #222,
+          0 5px 0 0 #222;
+        border: none;
+        cursor: pointer;
+        transition: background-color 300ms, color 300ms;
+
+        &:hover {
+          background-color: #222;
+          color: #d6ffc3;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,137 @@
+:root scene-intro {
+  img {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .outer-scene {
+    height: 300vh;
+    width: 300vw;
+    transform: translate(-10vw, -100vh);
+    background-color: #111;
+    transition: transform var(--classroom-slide-duration), filter var(--classroom-filter-change-duration);
+    filter: grayscale(1);
+
+    &.in-place {
+      transform: translate(-100vw, -100vh);
+    }
+
+    &.colored {
+      filter: none;
+    }
+
+    .inner-scene {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .blanket {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        bottom: -10px;
+        right: 100%;
+        transition: right var(--classroom-blanket-expand-duration);
+        background-color: #111;
+        z-index: 999;
+
+        &.expanded {
+          right: -10px;
+        }
+      }
+
+      .inner-inner-scene {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        &.shake {
+          animation: shake .5s infinite
+        }
+
+        .main-scene {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          overflow: hidden;
+        }
+      }
+
+      #bg {
+        width: calc(var(--scale) * 268px);
+        height: auto;
+      }
+
+      #light {
+        position: absolute;
+        top: calc(var(--scale) * 41px);
+        left: calc(var(--scale) * 8px);
+        width: calc(var(--scale) * 260px);
+        pointer-events: none;
+      }
+
+      #tables1 {
+        position: absolute;
+        top: calc(var(--scale) * 58px);
+        left: calc(var(--scale) * 30px);
+        width: calc(var(--scale) * 176px);
+      }
+
+      #tables2 {
+        position: absolute;
+        top: calc(var(--scale) * 92px);
+        left: calc(var(--scale) * 26px);
+        width: calc(var(--scale) * 175px);
+      }
+
+      #tables3 {
+        position: absolute;
+        top: calc(var(--scale) * 124px);
+        left: calc(var(--scale) * 32px);
+        width: calc(var(--scale) * 182px);
+      }
+
+      #teachersTable {
+        position: absolute;
+        top: calc(var(--scale) * 53px);
+        left: calc(var(--scale) * 195px);
+        width: calc(var(--scale) * 68px);
+      }
+
+      #lisa {
+        position: absolute;
+        top: calc(var(--scale) * 54px);
+        left: calc(var(--scale) * 167px);
+        width: calc(var(--scale) * 21px);
+      }
+
+      #teacher {
+        position: absolute;
+        top: calc(var(--scale) * 75px);
+        left: calc(var(--scale) * 225px);
+        width: calc(var(--scale) * 22px);
+      }
+    }
+  }
+
+  .clown, .balloon, .dust, .masha {
+    position: absolute;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(3px, -1px); }
+  20% { transform: translate(0px, 1px); }
+  30% { transform: translate(4px, -3px); }
+  40% { transform: translate(0px, 2px); }
+  50% { transform: translate(-5px, -3px); }
+  60% { transform: translate(0px, -1px); }
+  70% { transform: translate(2px, 4px); }
+  80% { transform: translate(-1px, 0px); }
+  90% { transform: translate(3px, 2px); }
+}
